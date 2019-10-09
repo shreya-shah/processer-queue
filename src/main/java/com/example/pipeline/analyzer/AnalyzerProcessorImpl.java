@@ -1,6 +1,9 @@
-package com.example.pipeline.analyzer.processor;
+package com.example.pipeline.analyzer;
 
 
+import com.example.pipeline.analyzer.processor.IAnalyzerProcessor;
+import com.example.pipeline.analyzer.producer.IAnalyzerProducer;
+import com.example.pipeline.analyzer.tasks.IAnalyzerTask;
 import com.example.pipeline.model.DocumentContent;
 import com.example.pipeline.processor.IProcessor;
 import com.example.pipeline.processor.IProducer;
@@ -8,22 +11,26 @@ import com.example.pipeline.processor.ITask;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
 
 @Component
-public class AnalyzerProcessorImpl implements IProcessor {
+@SpringBootApplication
+@ComponentScan("com.example.pipeline.analyzer")
+public class AnalyzerProcessorImpl implements IAnalyzerProcessor {
 
     @Autowired
     @Qualifier("analyzerTask1")
-    ITask task1;
+    IAnalyzerTask task1;
 
     @Autowired
     @Qualifier("analyzerTask2")
-    ITask task2;
+    IAnalyzerTask task2;
 
     @Autowired
     @Qualifier("analyzerProducer")
-    IProducer analyzerProducer;
+    IAnalyzerProducer analyzerProducer;
 
     public String processQueueMessage(DocumentContent documentContent) {
         System.out.println("Processing message in analyzer: " + documentContent);

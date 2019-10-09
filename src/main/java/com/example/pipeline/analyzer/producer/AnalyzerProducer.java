@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
-public class AnalyzerProducer implements IProducer {
+public class AnalyzerProducer implements IAnalyzerProducer {
     @Autowired
     RabbitTemplate rabbitTemplate;
 

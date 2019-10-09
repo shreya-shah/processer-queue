@@ -2,8 +2,10 @@ package com.example.pipeline.model;
 
 import org.springframework.stereotype.Component;
 
+import java.io.Serializable;
+
 @Component
-public class DocumentContent {
+public class DocumentContent implements Serializable {
     String documentUrl;
     String status;
 

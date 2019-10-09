@@ -1,22 +1,26 @@
-package com.example.pipeline.indexer.processor;
+package com.example.pipeline.indexer;
 
+import com.example.pipeline.indexer.processor.IIndexerProcessor;
+import com.example.pipeline.indexer.tasks.IIndexerTask;
 import com.example.pipeline.model.DocumentContent;
 import com.example.pipeline.processor.IProcessor;
 import com.example.pipeline.processor.ITask;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Component;
 
 @Component
-public class IndexerProcessorImpl implements IProcessor {
+@SpringBootApplication
+public class IndexerProcessorImpl implements IIndexerProcessor {
   @Autowired
   @Qualifier("indexerTask1")
-  ITask task1;
+  IIndexerTask task1;
 
   @Autowired
   @Qualifier("indexerTask2")
-  ITask task2;
+  IIndexerTask task2;
 
   public String processQueueMessage(DocumentContent documentContent) {
     System.out.println("Processing message in indexer: " + documentContent.getStatus());

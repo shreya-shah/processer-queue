@@ -5,7 +5,7 @@ import com.example.pipeline.processor.ITask;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CrawlerTask2 implements ITask {
+public class CrawlerTask2 implements ICrawlerTask {
     @Override
     public DocumentContent performTask(DocumentContent documentContent) {
         String output = documentContent.getStatus() + " some action by task2 of crawler \n";

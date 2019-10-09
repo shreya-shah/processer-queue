@@ -1,7 +1,6 @@
 package com.example.pipeline.crawler.producer;
 
 import com.example.pipeline.model.DocumentContent;
-import com.example.pipeline.processor.IProducer;
 import org.springframework.amqp.core.DirectExchange;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CrawlerProducer implements IProducer {
+public class CrawlerProducer implements ICrawlerProducer {
 
     @Autowired
     RabbitTemplate rabbitTemplate;
@@ -25,4 +24,5 @@ public class CrawlerProducer implements IProducer {
         System.out.println("in crawler producer..." + analyzerRoutingKey);
         this.rabbitTemplate.convertAndSend(exchange.getName(), analyzerRoutingKey, documentContent);
     }
+
 }

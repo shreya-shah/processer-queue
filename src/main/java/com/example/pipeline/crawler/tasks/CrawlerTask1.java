@@ -5,7 +5,7 @@ import com.example.pipeline.processor.ITask;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CrawlerTask1 implements ITask {
+public class CrawlerTask1 implements ICrawlerTask {
     public DocumentContent performTask(DocumentContent documentContent) {
         String output = documentContent.getStatus() + " some action by task1 of crawler \n";
         documentContent.setStatus(output);

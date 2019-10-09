@@ -1,13 +1,9 @@
-package com.example.pipeline.libs;
+package com.example.pipeline.indexer;
 
-import org.springframework.amqp.core.*;
-// import org.springframework.amqp.core.Binding;
-// import org.springframework.amqp.core.BindingBuilder;
-// import org.springframework.amqp.core.Queue;
+import org.springframework.amqp.core.Binding;
+import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.DirectExchange;
-// import org.springframework.amqp.rabbit.connection.ConnectionFactory;
-// import org.springframework.amqp.rabbit.core.RabbitTemplate;
-// import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
+import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
@@ -16,12 +12,21 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 
+// import org.springframework.amqp.core.Binding;
+// import org.springframework.amqp.core.BindingBuilder;
+// import org.springframework.amqp.core.Queue;
+// import org.springframework.amqp.rabbit.connection.ConnectionFactory;
+// import org.springframework.amqp.rabbit.core.RabbitTemplate;
+// import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
+
 @Configuration
 @PropertySource("classpath:application.properties")
 public class RabbitMqConfig {
 
-   @Value("${crawler.queue.name}")
+  @Value("${crawler.queue.name}")
    private String crawlerQueue;
+  @Value("${crawler.routing.key}")
+  private String CRAWLER_ROUTING_KEY;
 
   @Value("${analyzer.queue.name}")
   private String ANALYZER_QUEUE;
@@ -38,8 +43,6 @@ public class RabbitMqConfig {
   @Value("${analyzer.routing.key}")
   private String ANALYZER_ROUTING_KEY;
 
-  @Value("${crawler.routing.key}")
-  private String CRAWLER_ROUTING_KEY;
 
   @Bean
   public DirectExchange exchange() {

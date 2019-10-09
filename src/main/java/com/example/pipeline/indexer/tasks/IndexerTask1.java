@@ -5,7 +5,7 @@ import com.example.pipeline.processor.ITask;
 import org.springframework.stereotype.Component;
 
 @Component
-public class IndexerTask1 implements ITask {
+public class IndexerTask1 implements IIndexerTask {
     @Override
     public DocumentContent performTask(DocumentContent documentContent) {
         String output = documentContent.getStatus() + " some action by task1 of indexer\n";
