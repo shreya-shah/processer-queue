@@ -5,9 +5,6 @@ import com.example.pipeline.analyzer.processor.IAnalyzerProcessor;
 import com.example.pipeline.analyzer.producer.IAnalyzerProducer;
 import com.example.pipeline.analyzer.tasks.IAnalyzerTask;
 import com.example.pipeline.model.DocumentContent;
-import com.example.pipeline.processor.IProcessor;
-import com.example.pipeline.processor.IProducer;
-import com.example.pipeline.processor.ITask;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
@@ -15,7 +12,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
 
-@Component
 @SpringBootApplication
 @ComponentScan("com.example.pipeline.analyzer")
 public class AnalyzerProcessorImpl implements IAnalyzerProcessor {

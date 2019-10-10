@@ -3,15 +3,11 @@ package com.example.pipeline.indexer;
 import com.example.pipeline.indexer.processor.IIndexerProcessor;
 import com.example.pipeline.indexer.tasks.IIndexerTask;
 import com.example.pipeline.model.DocumentContent;
-import com.example.pipeline.processor.IProcessor;
-import com.example.pipeline.processor.ITask;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.stereotype.Component;
 
-@Component
 @SpringBootApplication
 public class IndexerProcessorImpl implements IIndexerProcessor {
   @Autowired
