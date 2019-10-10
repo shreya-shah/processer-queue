@@ -23,14 +23,6 @@ import org.springframework.context.annotation.PropertySource;
 @PropertySource("classpath:application.properties")
 public class RabbitMqConfig {
 
-  @Value("${crawler.queue.name}")
-   private String crawlerQueue;
-  @Value("${crawler.routing.key}")
-  private String CRAWLER_ROUTING_KEY;
-
-  @Value("${analyzer.queue.name}")
-  private String ANALYZER_QUEUE;
-
   @Value("${indexer.queue.name}")
   private String INDEXER_QUEUE;
 
@@ -40,8 +32,6 @@ public class RabbitMqConfig {
   @Value("${direct.exchange.name}")
   private String EXCHANGE_NAME;
 
-  @Value("${analyzer.routing.key}")
-  private String ANALYZER_ROUTING_KEY;
 
 
   @Bean
@@ -49,29 +39,10 @@ public class RabbitMqConfig {
     return new DirectExchange(EXCHANGE_NAME);
   }
 
-   @Bean
-   public Binding binding1(DirectExchange exchange, Queue queue1) {
-   return BindingBuilder.bind(queue1).to(exchange).with(CRAWLER_ROUTING_KEY);
-   }
-
-  @Bean
-  public Binding binding2(DirectExchange exchange, Queue queue2) {
-    return BindingBuilder.bind(queue2).to(exchange).with(ANALYZER_ROUTING_KEY);
-  }
 
   @Bean
   public Binding binding3(DirectExchange exchange, Queue queue3) {
     return BindingBuilder.bind(queue3).to(exchange).with(INDEXER_ROUTING_KEY);
-  }
-
-   @Bean
-   public Queue queue1() {
-   return new Queue(crawlerQueue);
-   }
-
-  @Bean
-  public Queue queue2() {
-    return new Queue(ANALYZER_QUEUE);
   }
 
   @Bean
